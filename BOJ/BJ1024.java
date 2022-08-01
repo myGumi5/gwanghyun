@@ -1,10 +1,27 @@
+import java.util.Arrays;
 import java.util.Scanner;
+
+class foo{
+	int x;
+	foo(int x) {
+		this.x = x;
+	}
+}
 
 public class BJ1024 {
 	
-	
+	static foo s (foo f) {
+		f = new foo(100);
+		return f;
+	}
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
+		
+		int[] aa = {1,2,3,4,5};
+		for(int x : aa) {
+			x+=10;
+		}
+		System.out.printf("%.1f",(double)(7/3));
 		int N = sc.nextInt();
 		int L = sc.nextInt();
 		int a = N/L;

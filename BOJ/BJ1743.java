@@ -34,36 +34,31 @@ public class BJ1743 {
 		System.out.println(max);
 	}
 	static int max=0;
-	static void bfs(int x, int y) {
+	static void bfs(int xx, int yy) {
 		int size = 0;
 		int[] dx = {1,-1,0,0};
 		int[] dy = {0,0,1,-1};
-		Queue<xy> q = new LinkedList<>();
-		q.add(new xy(x,y));
+		Queue<int[]> q = new LinkedList<>();
+		q.add(new int[] {xx,yy});
+		visited[xx][yy] = true;
 		while(!q.isEmpty()) {
 			size++;
-			xy tmp = q.poll();
-			visited[tmp.x][tmp.y] = true;
+			int[] tmp = q.poll();
+			int x = tmp[0];
+			int y = tmp[1];
+			
 			for(int i =0;i<4;i++) {
-				int nx = tmp.x+dx[i];
-				int ny = tmp.y+dy[i];
+				int nx = x+dx[i];
+				int ny = y+dy[i];
 				if(nx<1||nx>N||ny<1||ny>M || visited[nx][ny] || box[nx][ny] == 0) {
 					continue;
 				}
-				q.add(new xy(nx,ny));
+				q.add(new int[] {nx,ny});
+				visited[nx][ny] = true;
 			}
 		}
 		max = Math.max(max, size);
 	}
-	
-	static class xy {
-		int x,y;
-		xy(int a, int b){
-			x = a;
-			y = b;
-		}
-	}
-	
 	
 	static class FastIn {
 		BufferedReader br;
