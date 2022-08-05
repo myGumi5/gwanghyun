@@ -3,58 +3,34 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-public class BOJ2630 {
+public class BOJ1074 {
 
-	static int white = 0;
-	static int blue = 0;
-	static int[][] box = null;
-	static int N = 0;
-
+	static int N= 0,r=0,c=0, ans = 0;
+	
 	static void rec(int x, int y, int n) {
-		if(n == 0) {
-			return;
-		}
-		
-		int w = 0, b = 0;
-		for(int i = x; i<x+n;i++) {
-			for(int j = y; j<y+n;j++) {
-				if(box[i][j] == 0) {
-					w++;
-				} else {
-					b++;
-				}
-				if(w!=0 && b!=0) {
-					break;
-				}
-			}			
-		}
-		if(w==n*n) {
-			white++;
-			return;
+		if (r <= x-n/2) {
+			x = x-(int)Math.pow(2, n/2);
+			ans -= (int)Math.pow(2, n)*2;
 		} 
-		if(b==n*n) {
-			blue++;
+		if (c <= y-n/2) {
+			y = y-(int)Math.pow(2, n/2);
+			ans -= (int)Math.pow(2, n);
+		}
+		if(x==r && y ==c)
 			return;
-		} 
 		rec(x,y,n/2);
-		rec(x,y+n/2,n/2);
-		rec(x+ n/2,y,n/2);
-		rec(x+n/2,y+n/2,n/2);
 			
 	}
 
 	public static void main(String[] args) {
 		FastIn fi = new FastIn();
 		N = fi.nextInt();
-		box = new int[N][N];
-		for (int i = 0; i < N; i++) {
-			for (int j = 0; j < N; j++) {
-				box[i][j] = fi.nextInt();
-			}
-		}
-		rec(0,0,N);
-		System.out.println(white);
-		System.out.println(blue);
+		r = fi.nextInt();
+		c = fi.nextInt();
+		int n = (int)Math.pow(2, N)*(int)Math.pow(2, N);
+		ans = n-1;
+		rec((int)Math.pow(2, N)-1,(int)Math.pow(2, N)-1,N);
+		System.out.println(ans);
 	}
 
 	static class FastIn {
