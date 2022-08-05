@@ -13,7 +13,6 @@ public class BOJ2559 {
 		for(int i =1;i<=N;i++) {
 			dp[i] = dp[i-1] + sc.nextInt();
 		}
-		System.out.println(Arrays.toString(dp));
 		int max = Integer.MIN_VALUE;
 		for(int i =M ; i<=N;i++) {
 			max = Math.max(dp[i]-dp[i-M], max);
