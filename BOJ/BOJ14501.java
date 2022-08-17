@@ -13,7 +13,7 @@ public class BOJ14501 {
 		int[] dp = new int[N+2];
 		int T = 0;
 		int P = 0;
-		int max = -1;
+		int max = 0;
 		for (int i=1;i<N+1;i++) {
 			T = sc.nextInt();
 			P = sc.nextInt();

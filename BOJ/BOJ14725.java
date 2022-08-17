@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -70,6 +71,14 @@ public class BOJ14725 {
 			cur.isEnd = true;
 		}
 		pr(root);
+=======
+
+public class BOJ14725 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+>>>>>>> 7575c434bdda1e678236eb93d04d712975608ca6
 	}
 
 }

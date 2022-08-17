@@ -17,8 +17,6 @@ public class BOJ1005 {
 			ArrayList<ArrayList<Integer>> tree = new ArrayList<>();
 			int N = sc.nextInt();
 			int K = sc.nextInt();
-			int sum = 0;
-			boolean flag = false;
 			int[] day = new int[N + 1];
 			int[] polo = new int[N + 1];
 			int[] dp = new int[N+1];
@@ -37,7 +35,6 @@ public class BOJ1005 {
 			}
 			int win = sc.nextInt();
 			
-			// 시작 
 			Queue<Integer> d = new LinkedList<>();
 			for(int i = 1; i <= N; i++) {
 				if(polo[i] == 0) {
@@ -49,7 +46,6 @@ public class BOJ1005 {
 				if (target == win) {
 					break;
 				} else {
-					int max = 0;
 					for(int x : tree.get(target)) {
 						dp[x] = Math.max(dp[x], day[x] + dp[target]);
 						if(--polo[x]  == 0 ) {
