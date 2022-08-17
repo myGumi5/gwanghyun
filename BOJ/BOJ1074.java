@@ -1,60 +1,45 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.StringTokenizer;
+import java.util.Scanner;
 
 public class BOJ1074 {
-
-	static int N= 0,r=0,c=0, ans = 0;
-	
-	static void rec(int x, int y, int n) {
-		if (r <= x-n/2) {
-			x = x-(int)Math.pow(2, n/2);
-			ans -= (int)Math.pow(2, n)*2;
-		} 
-		if (c <= y-n/2) {
-			y = y-(int)Math.pow(2, n/2);
-			ans -= (int)Math.pow(2, n);
-		}
-		if(x==r && y ==c)
+	static int N;
+	static int x,y;
+	static int[][] map;
+	static int ans;
+	static int p;
+	static void rec(int s,int e, int size,int num,int ans) {
+		if(size == 0) {
 			return;
-		rec(x,y,n/2);
+		}
+		if(s==x && e == y) {
+			System.out.println(num);
+			System.exit(0);
+		} else {
+			ans = ans/4;
 			
+			if(x<s+size/2 && y<e+size/2)
+				rec(s,e ,size/2,num,ans);
+			if(x<s+size/2 && y>=e+size/2)
+				rec(s,e+size/2 ,size/2,num+ans,ans);
+			if(x>=s+size/2 && y<e+size/2)
+				rec(s+size/2,e ,size/2,num+ans*2,ans);
+			if(x>=s+size/2 && y>=e+size/2)
+				rec(s+size/2,e+size/2 ,size/2,num+ans*3,ans);
+		}
 	}
-
+	
 	public static void main(String[] args) {
-		FastIn fi = new FastIn();
-		N = fi.nextInt();
-		r = fi.nextInt();
-		c = fi.nextInt();
-		int n = (int)Math.pow(2, N)*(int)Math.pow(2, N);
-		ans = n-1;
-		rec((int)Math.pow(2, N)-1,(int)Math.pow(2, N)-1,N);
-		System.out.println(ans);
+		Scanner sc = new Scanner(System.in);
+		for(int k = 10; k>=0;k-- ) {
+			System.out.println(k);
+		}
+		N = sc.nextInt();
+		x = sc.nextInt();
+		y = sc.nextInt();
+		p = (int) Math.pow(2,N);
+		ans = (int) Math.pow(p,2);
+		rec(0,0,p,0,ans);
+		
+		
 	}
 
-	static class FastIn {
-		BufferedReader br;
-		StringTokenizer st;
-
-		public FastIn() {
-			br = new BufferedReader(new InputStreamReader(System.in));
-		}
-
-		String next() {
-
-			while (st == null || !st.hasMoreElements()) {
-				try {
-					st = new StringTokenizer(br.readLine());
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			}
-			return st.nextToken();
-		}
-
-		public int nextInt() {
-			return Integer.parseInt(next());
-		}
-	}
 }
