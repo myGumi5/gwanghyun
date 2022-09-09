@@ -1,0 +1,26 @@
+import java.util.Scanner;
+
+public class BOJ1305 {
+
+	static int pi(String str) {
+		int j = 0;
+		int[] pi = new int[str.length()];
+		for(int i = 1; i<str.length();i++) {
+			while(j>0 && str.charAt(i) != str.charAt(j)) {
+				j = pi[j-1];
+			}
+			if(str.charAt(i) == str.charAt(j)) {
+				pi[i] = ++j;
+			}
+		}
+		return pi[str.length()-1];
+	}
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		String str = sc.next();
+		int num = pi(str);
+		System.out.println(n-num);
+	}
+
+}
